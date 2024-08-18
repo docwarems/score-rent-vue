@@ -1,6 +1,6 @@
 <template>
   <div class="job-list">
-    <ul>
+    <ul class="w3-ul w3-border">
       <li v-for="user in users" :key="user.id">
         <h2>{{ user.firstName }} {{ user.lastName }}</h2>
       </li>
