@@ -1,6 +1,6 @@
 <template>
   <div class="w3-container w3-border w3-large">
-    <button class="w3-button w3-black" @click="handleClick('name')">Order by name</button>
+    <button class="w3-button w3-black" @click="handleClick('lastName')">Order by name</button>
     <button class="w3-button w3-black" @click="handleClick('voice')">Order by voice</button>
     <UserList :users="users" :order="order" />
   </div>
@@ -18,9 +18,11 @@ export default defineComponent({
     const users = ref<User[]>([
       { firstName: 'Michael', lastName: 'Jordan', id: '1', voice: 'Tenor' },
       { firstName: 'Markus', lastName: 'Kafka', id: '2', voice: 'Tenor' },
+      { firstName: 'Conrad', lastName: 'Toenz', id: '4', voice: 'Bass' },
+      { firstName: 'Heribert', lastName: 'Fassbender', id: '5', voice: 'Tenor' },
       { firstName: 'Franzi', lastName: 'Almsick', id: '3', voice: 'Alto' }
     ])
-    const order = ref<OrderTerm>('name')
+    const order = ref<OrderTerm>('lastName')
 
     const handleClick = (term: OrderTerm) => {
       order.value = term

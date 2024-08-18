@@ -7,4 +7,4 @@ export interface User {
 
 export type Voice = 'Soprano' | 'Alto' | 'Tenor' | 'Bass'
 
-export type OrderTerm = 'name' | 'voice'
+export type OrderTerm = 'lastName' | 'voice'
