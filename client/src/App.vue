@@ -1,15 +1,15 @@
 <template>
-  <header>
-    <div class="wrapper">
-      <UserList :users="users" />
-    </div>
-  </header>
+  <div class="w3-container w3-border w3-large">
+    <button class="w3-button w3-black" @click="handleClick('name')">Order by name</button>
+    <button class="w3-button w3-black" @click="handleClick('voice')">Order by voice</button>
+    <UserList :users="users" :order="order" />
+  </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
 import UserList from './components/UserList.vue'
-import { type User } from './types/user'
+import { type User, type OrderTerm } from './types/user'
 
 export default defineComponent({
   name: 'App',
@@ -20,8 +20,13 @@ export default defineComponent({
       { firstName: 'Markus', lastName: 'Kafka', id: '2', voice: 'Tenor' },
       { firstName: 'Franzi', lastName: 'Almsick', id: '3', voice: 'Alto' }
     ])
+    const order = ref<OrderTerm>('name')
 
-    return { users }
+    const handleClick = (term: OrderTerm) => {
+      order.value = term
+    }
+
+    return { users, order, handleClick }
   }
 })
 </script>
