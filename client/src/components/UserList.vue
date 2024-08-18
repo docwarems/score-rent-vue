@@ -1,17 +1,19 @@
 <template>
   <div class="job-list">
     <p>Sortiert nach {{ order }}</p>
-    <ul class="w3-ul w3-border">
-      <li v-for="user in orderedUsers" :key="user.id">
-        <h2>{{ user.firstName }} {{ user.lastName }} {{ user.voice }}</h2>
-      </li>
-    </ul>
+    <table class="w3-table-all" id="checkoutsTable">
+      <tr v-for="user in orderedUsers" :key="user.id">
+        <td>{{ user.firstName }}</td>
+        <td>{{ user.lastName }}</td>
+        <td>{{ user.voice }}</td>
+      </tr>
+    </table>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, type PropType, computed } from 'vue'
-import { type User, type OrderTerm } from '../types/user'
+import { type User, type OrderTerm, type OrderDirection } from '../types/user'
 
 export default defineComponent({
   name: 'App',
@@ -24,12 +26,20 @@ export default defineComponent({
     order: {
       type: String as PropType<OrderTerm>,
       required: true
+    },
+    orderDirection: {
+      type: String as PropType<OrderDirection>,
+      required: true
     }
   },
   setup(props) {
     const orderedUsers = computed(() => {
       return [...props.users].sort((a: User, b: User) => {
-        return a[props.order] > b[props.order] ? 1 : -1
+        if (props.orderDirection === 'asc') {
+          return a[props.order] > b[props.order] ? 1 : -1
+        } else {
+          return a[props.order] < b[props.order] ? 1 : -1
+        }
       })
     })
 

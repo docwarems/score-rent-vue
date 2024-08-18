@@ -8,3 +8,4 @@ export interface User {
 export type Voice = 'Soprano' | 'Alto' | 'Tenor' | 'Bass'
 
 export type OrderTerm = 'lastName' | 'voice'
+export type OrderDirection = 'asc' | 'desc'

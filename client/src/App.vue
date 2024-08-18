@@ -1,15 +1,30 @@
 <template>
   <div class="w3-container w3-border w3-large">
-    <button class="w3-button w3-black" @click="handleClick('lastName')">Order by name</button>
+    <button class="w3-button w3-black" @click="handleClick('lastName')">Order by lastName</button>
     <button class="w3-button w3-black" @click="handleClick('voice')">Order by voice</button>
-    <UserList :users="users" :order="order" />
+    <input
+      class="w3-radio"
+      type="radio"
+      name="orderDirection"
+      value="asc"
+      checked
+      @click="changeOrderDirection('asc')"
+    /><label>Aufsteigend</label>
+    <input
+      class="w3-radio"
+      type="radio"
+      name="orderDirection"
+      value="desc"
+      @click="changeOrderDirection('desc')"
+    /><label>Absteigend</label>
+    <UserList :users="users" :order="order" :order-direction="orderDirection" />
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
 import UserList from './components/UserList.vue'
-import { type User, type OrderTerm } from './types/user'
+import { type User, type OrderTerm, type OrderDirection } from './types/user'
 
 export default defineComponent({
   name: 'App',
@@ -23,12 +38,17 @@ export default defineComponent({
       { firstName: 'Franzi', lastName: 'Almsick', id: '3', voice: 'Alto' }
     ])
     const order = ref<OrderTerm>('lastName')
+    const orderDirection = ref<OrderDirection>('asc')
 
     const handleClick = (term: OrderTerm) => {
       order.value = term
     }
 
-    return { users, order, handleClick }
+    const changeOrderDirection = (term: OrderDirection) => {
+      orderDirection.value = term
+    }
+
+    return { users, order, orderDirection, handleClick, changeOrderDirection }
   }
 })
 </script>
