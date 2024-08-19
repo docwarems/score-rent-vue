@@ -2,10 +2,21 @@
   <div class="job-list">
     <p>Sortiert nach {{ order }}</p>
     <table class="w3-table-all" id="checkoutsTable">
+      <tr>
+        <th>User Id</th>
+        <th>Vorname</th>
+        <th>Nachname</th>
+        <th>Email</th>
+        <th>Stimmgruppe</th>
+        <th>M-Status</th>
+      </tr>
       <tr v-for="user in orderedUsers" :key="user.id">
+        <td>{{ user.id }}</td>
         <td>{{ user.firstName }}</td>
         <td>{{ user.lastName }}</td>
+        <td>{{ user.email }}</td>
         <td>{{ user.voice }}</td>
+        <td>{{ user.memberState }}</td>
       </tr>
     </table>
   </div>
@@ -13,7 +24,8 @@
 
 <script lang="ts">
 import { defineComponent, type PropType, computed } from 'vue'
-import { type User, type OrderTerm, type OrderDirection } from '../types/user'
+import { type User, type OrderTerm } from '../types/user'
+import { type OrderDirection } from '../types/order'
 
 export default defineComponent({
   name: 'App',
