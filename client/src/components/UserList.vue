@@ -28,6 +28,21 @@
       <th>Stimmgruppe</th>
       <th>M-Status</th>
     </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td>
+        <input
+          class="w3-input w3-border w3-padding"
+          type="text"
+          placeholder="Filtern.."
+          v-model="filter"
+        />
+      </td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
     <tr v-for="user in orderedUsers" :key="user.id">
       <td>{{ user.id }}</td>
       <td>{{ user.firstName }}</td>
@@ -64,7 +79,11 @@ export default defineComponent({
   },
   setup(props) {
     const orderedUsers = computed(() => {
-      return [...props.users].sort((a: User, b: User) => {
+      const filteredList = [...props.users].filter((user: User) =>
+        user.lastName.toLowerCase().startsWith(filter.value.toLowerCase())
+      )
+
+      return filteredList.sort((a: User, b: User) => {
         if (orderDirection.value === 'asc') {
           return a[order.value] > b[props.initialOrder] ? 1 : -1
         } else {
@@ -73,6 +92,7 @@ export default defineComponent({
       })
     })
 
+    const filter = ref<string>('')
     const order = ref<OrderTerm>(props.initialOrder)
     const orderDirection = ref<OrderDirection>(props.initialOrderDirection)
 
@@ -84,7 +104,14 @@ export default defineComponent({
       orderDirection.value = term
     }
 
-    return { orderedUsers, handleClick, changeOrderDirection, order, orderDirection }
+    return {
+      orderedUsers,
+      handleClick,
+      changeOrderDirection,
+      order,
+      orderDirection,
+      filter
+    }
   }
 })
 </script>
