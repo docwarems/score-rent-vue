@@ -1,23 +1,10 @@
 <template>
-  <div class="w3-container w3-border w3-large">
-    <button class="w3-button w3-black" @click="handleClick('lastName')">Order by lastName</button>
-    <button class="w3-button w3-black" @click="handleClick('voice')">Order by voice</button>
-    <input
-      class="w3-radio"
-      type="radio"
-      name="orderDirection"
-      value="asc"
-      checked
-      @click="changeOrderDirection('asc')"
-    /><label>Aufsteigend</label>
-    <input
-      class="w3-radio"
-      type="radio"
-      name="orderDirection"
-      value="desc"
-      @click="changeOrderDirection('desc')"
-    /><label>Absteigend</label>
-    <UserList :users="users" :order="order" :order-direction="orderDirection" />
+  <div class="w3-container">
+    <!-- Header -->
+
+    <div class="w3-container w3-border w3-large">
+      <UserList :users="users" :initialOrder="order" :initialOrderDirection="orderDirection" />
+    </div>
   </div>
 </template>
 
@@ -69,17 +56,9 @@ export default defineComponent({
       }
     ])
     const order = ref<OrderTerm>('lastName')
-    const orderDirection = ref<OrderDirection>('asc')
+    const orderDirection = ref<OrderDirection>('desc')
 
-    const handleClick = (term: OrderTerm) => {
-      order.value = term
-    }
-
-    const changeOrderDirection = (term: OrderDirection) => {
-      orderDirection.value = term
-    }
-
-    return { users, order, orderDirection, handleClick, changeOrderDirection }
+    return { users, order, orderDirection }
   }
 })
 </script>
