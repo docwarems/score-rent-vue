@@ -1,16 +1,29 @@
 <template>
   <header>
     <div class="wrapper">
-      <UserList />
+      <UserList :users="users" />
     </div>
   </header>
-
-  <RouterView />
 </template>
 
-<script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router'
+<script lang="ts">
+import { defineComponent, ref } from 'vue'
 import UserList from './components/UserList.vue'
+import { type User } from './types/user'
+
+export default defineComponent({
+  name: 'App',
+  components: { UserList },
+  setup() {
+    const users = ref<User[]>([
+      { firstName: 'Michael', lastName: 'Jordan', id: '1', voice: 'Tenor' },
+      { firstName: 'Markus', lastName: 'Kafka', id: '2', voice: 'Tenor' },
+      { firstName: 'Franzi', lastName: 'Almsick', id: '3', voice: 'Alto' }
+    ])
+
+    return { users }
+  }
+})
 </script>
 
 <style scoped>

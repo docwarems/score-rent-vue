@@ -1,5 +1,10 @@
 export interface User {
+  id: string
   firstName: string
   lastName: string
-  id: string
+  voice: Voice
 }
+
+export type Voice = 'Soprano' | 'Alto' | 'Tenor' | 'Bass'
+
+export type OrderTerm = 'name' | 'voice'
