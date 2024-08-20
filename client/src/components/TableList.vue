@@ -21,12 +21,9 @@
   <p>Sortiert nach {{ order }}</p>
   <table class="w3-table-all" id="checkoutsTable">
     <tr>
-      <th>User Id</th>
-      <th>Vorname</th>
-      <th>Nachname</th>
-      <th>Email</th>
-      <th>Stimmgruppe</th>
-      <th>M-Status</th>
+      <th v-for="field in fields" :key="field.name">
+        {{ field.title }}
+      </th>
     </tr>
     <tr>
       <td></td>
@@ -43,29 +40,32 @@
       <td></td>
       <td></td>
     </tr>
-    <tr v-for="user in orderedUsers" :key="user.id">
-      <td>{{ user.id }}</td>
-      <td>{{ user.firstName }}</td>
-      <td>{{ user.lastName }}</td>
-      <td>{{ user.email }}</td>
-      <td>{{ user.voice }}</td>
-      <td>{{ user.memberState }}</td>
+    <tr v-for="row in rows" :key="row.id">
+      <td v-for="field in fields" :key="field.name">
+        {{ row[field.name] }}
+      </td>
     </tr>
   </table>
 </template>
 
 <script lang="ts">
 import { defineComponent, type PropType, computed, ref } from 'vue'
-import { type User, type OrderTerm } from '../types/user'
+import { type OrderTerm } from '../types/user'
 import { type OrderDirection } from '../types/order'
+import { type Field } from '../types/field'
+import { type ListRow } from '../types/list'
 
 export default defineComponent({
   // If not using <script setup>, it is necessary to use defineComponent() to enable props type inference
   name: 'App',
   components: {},
   props: {
-    users: {
-      type: Array as PropType<User[]>,
+    fields: {
+      type: Array as PropType<Field[]>,
+      required: true
+    },
+    rows: {
+      type: Array as PropType<ListRow[]>,
       required: true
     },
     initialOrder: {
@@ -78,19 +78,20 @@ export default defineComponent({
     }
   },
   setup(props) {
-    const orderedUsers = computed(() => {
-      const filteredList = [...props.users].filter((user: User) =>
-        user.lastName.toLowerCase().startsWith(filter.value.toLowerCase())
-      )
+    // TODO: make working again
+    // const orderedRows = computed(() => {
+    //   const filteredList = [...props.rows].filter((user: ListRow) =>
+    //     user.lastName.toLowerCase().startsWith(filter.value.toLowerCase())
+    //   )
 
-      return filteredList.sort((a: User, b: User) => {
-        if (orderDirection.value === 'asc') {
-          return a[order.value] > b[props.initialOrder] ? 1 : -1
-        } else {
-          return a[order.value] < b[props.initialOrder] ? 1 : -1
-        }
-      })
-    })
+    //   return filteredList.sort((a: ListRow, b: ListRow) => {
+    //     if (orderDirection.value === 'asc') {
+    //       return a[order.value] > b[props.initialOrder] ? 1 : -1
+    //     } else {
+    //       return a[order.value] < b[props.initialOrder] ? 1 : -1
+    //     }
+    //   })
+    // })
 
     const filter = ref<string>('')
     const order = ref<OrderTerm>(props.initialOrder)
@@ -105,7 +106,7 @@ export default defineComponent({
     }
 
     return {
-      orderedUsers,
+      // orderedRows,
       handleClick,
       changeOrderDirection,
       order,

@@ -1,5 +1,6 @@
-export interface User {
-  id: string
+import type { ListRow } from './list'
+
+export interface User extends ListRow {
   firstName: string
   lastName: string
   password?: string

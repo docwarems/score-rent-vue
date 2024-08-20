@@ -1,19 +1,52 @@
 <template>
   <h1>User list</h1>
-  <UserList :users="users" :initialOrder="order" :initialOrderDirection="orderDirection" />
+  <TableList
+    :fields="fields"
+    :rows="users"
+    :initialOrder="order"
+    :initialOrderDirection="orderDirection"
+  />
 </template>
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
-import UserList from '../components/UserList.vue'
+import TableList from '../components/TableList.vue'
 import { type User, type OrderTerm } from '../types/user'
 import { type OrderDirection } from '../types/order'
+import { type Field } from '../types/field'
 
 // TODO: unklar ob die Benutzerliste als Komponente Sinn macht
 export default defineComponent({
   name: 'Users',
-  components: { UserList },
+  components: { TableList },
   setup() {
+    const fields = ref<Field[]>([
+      {
+        name: 'id',
+        title: 'User Id'
+      },
+      {
+        name: 'firstName',
+        title: 'Vorname'
+      },
+      {
+        name: 'lastName',
+        title: 'Nachname'
+      },
+      {
+        name: 'email',
+        title: 'E-Mail'
+      },
+      {
+        name: 'voice',
+        title: 'Stimmgruppe'
+      },
+      {
+        name: 'memberState',
+        title: 'M-Status'
+      }
+    ])
+
     const users = ref<User[]>([
       {
         firstName: 'Michael',
@@ -54,7 +87,7 @@ export default defineComponent({
     const order = ref<OrderTerm>('lastName')
     const orderDirection = ref<OrderDirection>('desc')
 
-    return { users, order, orderDirection }
+    return { users, order, orderDirection, fields }
   }
 })
 </script>
