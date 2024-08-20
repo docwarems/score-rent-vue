@@ -1,4 +1,8 @@
 <template>
+  <a href="#/">Home</a> | <a href="#/about">About</a> |
+  <a href="#/non-existent-path">Broken Link</a>
+  <component :is="currentView" />
+
   <div class="w3-container">
     <!-- Header -->
 
@@ -9,10 +13,28 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue'
+import { defineComponent, ref, computed } from 'vue'
 import UserList from './components/UserList.vue'
 import { type User, type OrderTerm } from './types/user'
 import { type OrderDirection } from './types/order'
+import Home from './views/Home.vue'
+import About from './views/About.vue'
+import NotFound from './views/NotFound.vue'
+
+const routes: Record<string, any> = {
+  '/': Home,
+  '/about': About
+}
+
+const currentPath = ref<any>(window.location.hash)
+
+window.addEventListener('hashchange', () => {
+  currentPath.value = window.location.hash
+})
+
+const currentView = computed(() => {
+  return routes[currentPath.value.slice(1) || '/'] || NotFound
+})
 
 export default defineComponent({
   name: 'App',
@@ -58,7 +80,7 @@ export default defineComponent({
     const order = ref<OrderTerm>('lastName')
     const orderDirection = ref<OrderDirection>('desc')
 
-    return { users, order, orderDirection }
+    return { users, order, orderDirection, currentView }
   }
 })
 </script>
