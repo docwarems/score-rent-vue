@@ -13,13 +13,11 @@ Before I watched the Vue 3 tutorial from Net Ninja at https://www.youtube.com/wa
 
 ## Setup
 
-I setup the app template using "npm create vue@latest" as described on the Vue site.
+I setup the app template using "npm create vue@latest" as described on the Vue site. Create options used:
 
-I activated Typescript support as we use it professionally too. The CLI setuped Typescript 5.4 is newer I am familiar with professionally. These things were new to me so far:
-
-- "import type" feature mandatory (or at least mandatory due to some tsconfig option created by the Vue template).
-
-I enabled the Playwright support, as this is also used for testing by our frontend team. I plan to use it later.
+- Typescript: I activated Typescript support as we use it professionally too.
+- Router: However, I deleted the routing code for my very first routing example - see below
+- Playwright: I enabled the Playwright support, as this is also used for testing by our frontend team. I plan to use it later.
 
 ### App organization
 
@@ -30,6 +28,12 @@ As I plan to later connect the Vue app to a backend API, I created the Vue app i
 I will use the Composition API, as it seems to be the recommended default variant today.
 
 ## Development experience
+
+### Typescript
+
+The CLI set up Typescript 5.4 which is newer as the version I am familiar with professionally. These things were new to me so far:
+
+- "import type" feature mandatory (or at least mandatory due to some tsconfig option created by the Vue template).
 
 ### Extensions
 
