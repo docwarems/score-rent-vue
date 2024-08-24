@@ -1,5 +1,4 @@
 <template>
-  <h1>User list</h1>
   <TableList
     :fields="fields"
     :rows="users"
@@ -17,7 +16,7 @@ import { type Field } from '../types/field'
 
 // TODO: unklar ob die Benutzerliste als Komponente Sinn macht
 export default defineComponent({
-  name: 'Users',
+  name: 'UserList',
   components: { TableList },
   setup() {
     const fields = ref<Field[]>([

@@ -9,7 +9,7 @@ Today professionally I'm doing only nodejs backend development, but our frontend
 
 Currently I primilarly follow the official Vue documentation at vuejs.org.
 
-Before I watched the Vue 3 tutorial from Net Ninja at https://www.youtube.com/watch?v=YrxBCBibVo0&list=PL4cUxeGkcC9hYYGbV60Vq3IXYNfDk8At1 which is always fantastic as all Net Ninja tutorials. However, it is three years old and focuses mainly on the Options API (but at the end it promotes the Composition API for the future too). The link to the Github repo is not fuly matching today with the YT playlist (early chapters from the playlist missing). The repo seems to have progressed a lot regarding a non free Vue/Firebase course.
+Before I watched the Vue 3 tutorial from Net Ninja at https://www.youtube.com/watch?v=YrxBCBibVo0&list=PL4cUxeGkcC9hYYGbV60Vq3IXYNfDk8At1. which is fantastic as all Net Ninja tutorials. However, it is three years old and focuses mainly on the Options API (but at the end it promotes the Composition API for the future too). The link to the Github repo is not fully matching today with the YT playlist (early chapters from the playlist missing). The repo seems to have progressed a lot regarding a non free Vue/Firebase course.
 
 ## Setup
 
@@ -41,7 +41,7 @@ The README created from the Vue app template recommends the Volar Vue extension,
 
 ### Routing
 
-The approach described here https://vuejs.org/guide/scaling-up/routing.html is somehow different from the only I found in the Net Ninja tutorial. The Vue doc obviously uses a manally created routing mechanism using a-tag JS hrefs ("If you .. do not wish to involve a full-featured router library"). Of course I want to use the full-featured router, but I started with this simple approach too.
+The approach described here https://vuejs.org/guide/scaling-up/routing.html is somehow different from the only I found in the Net Ninja tutorial. The Vue doc obviously uses a manually created routing mechanism using a-tag JS hrefs ("If you .. do not wish to involve a full-featured router library"). Of course I want to use the full-featured router, but I started with this simple approach too.
 
 # Remains from the README created by the Vuejs template
 

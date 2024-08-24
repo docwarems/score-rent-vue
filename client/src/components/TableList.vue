@@ -55,6 +55,8 @@ import { type OrderDirection } from '../types/order'
 import { type Field } from '../types/field'
 import { type ListRow } from '../types/list'
 
+// To let TypeScript properly infer types inside component options, we need to define components with defineComponent()
+// see https://vuejs.org/guide/typescript/overview.html
 export default defineComponent({
   // If not using <script setup>, it is necessary to use defineComponent() to enable props type inference
   name: 'App',
