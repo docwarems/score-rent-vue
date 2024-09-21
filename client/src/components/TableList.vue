@@ -55,17 +55,32 @@ import { type OrderDirection } from '../types/order'
 import { type Field } from '../types/field'
 import { type ListRow } from '../types/list'
 
+/**
+ * An attempt to create generic Vue component to display various table list data.
+ * The component shall support
+ * - ordering
+ */
+
 // To let TypeScript properly infer types inside component options, we need to define components with defineComponent()
 // see https://vuejs.org/guide/typescript/overview.html
 export default defineComponent({
   // If not using <script setup>, it is necessary to use defineComponent() to enable props type inference
   name: 'App',
-  components: {},
+  components: {}, // no other nested components
   props: {
+    // the field or column definitions of the table
+    // a field has a name used as the key in the array
+    // it also has a title which can be regarded as the displayed name, and it probably multi-langual
+    // using fields we can thus display the table headers
+    // properties like column width may follow
     fields: {
       type: Array as PropType<Field[]>,
       required: true
     },
+    // rows is the two-dimensional array of the table data
+    // we define it as an array of ListRow, where ListRow represents a row
+    // TODO: explain why we need the ListRow type
+    // TODO: test ready-to-use component like https://bootstrap-vue.org/docs/components/table
     rows: {
       type: Array as PropType<ListRow[]>,
       required: true
