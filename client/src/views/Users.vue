@@ -52,14 +52,16 @@ export default defineComponent({
         lastName: 'Jordan',
         id: 'mi.jordan',
         voice: 'Tenor',
-        email: 'michael@jordan.de'
+        email: 'michael@jordan.de',
+        memberState: 'member'
       },
       {
         firstName: 'Markus',
         lastName: 'Kafka',
         id: 'ma.kafka',
         voice: 'Tenor',
-        email: 'markus.kafka@web.de'
+        email: 'markus.kafka@web.de',
+        memberState: undefined
       },
       {
         firstName: 'Conrad',
